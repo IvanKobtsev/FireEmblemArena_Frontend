@@ -1,0 +1,123 @@
+@at-root {
+  @property --gradient-angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+  }
+
+  @property --gradient-transparency {
+    syntax: "<percentage>";
+    initial-value: -1%;
+    inherits: false;
+  }
+}
+
+@keyframes gradient-angle-spin {
+  0% {
+    --gradient-angle: 0deg;
+  }
+  100% {
+    --gradient-angle: 360deg;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+  background-size: cover;
+  width: fit-content;
+  height: fit-content;
+  border-radius: 10px;
+  padding: 5px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  --gradient-angle: 0deg;
+  --gradient-transparency: 0;
+  background: linear-gradient(
+    var(--gradient-angle),
+    rgba(57, 43, 255, var(--gradient-transparency)) 0,
+    rgba(255, 25, 25, var(--gradient-transparency)) 100%
+  );
+  animation: gradient-angle-spin 3.6s linear infinite;
+  transition:
+    all 0.2s,
+    --gradient-transparency 0.2s;
+
+  &:has(.Button:hover) {
+    --gradient-transparency: 100%;
+    --gradient-angle: 120deg;
+
+    &::after {
+      --gradient-transparency: 100%;
+    }
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    --gradient-angle: 0deg;
+    --gradient-transparency: 0;
+    background: linear-gradient(
+      var(--gradient-angle),
+      rgba(57, 43, 255, var(--gradient-transparency)) 0,
+      rgba(255, 25, 25, var(--gradient-transparency)) 100%
+    );
+    transition: --gradient-transparency 0.2s;
+    width: calc(100% + 10px);
+    height: calc(100% + 10px);
+    filter: blur(30px);
+    animation: gradient-angle-spin 3.6s linear infinite;
+  }
+
+  &.clicked {
+    --gradient-transparency: 100%;
+    &::after {
+      --gradient-transparency: 100%;
+    }
+
+    .Button {
+      background-color: transparent !important;
+      color: #fff;
+      cursor: default;
+    }
+  }
+
+  &.disabled {
+    pointer-events: none !important;
+    opacity: 0.2 !important;
+  }
+}
+
+.Button {
+  font-size: 36px;
+  font-family: Danmark, sans-serif;
+  user-select: none;
+
+  width: fit-content;
+  height: fit-content;
+  padding: 10px 30px;
+
+  border: none;
+  border-radius: 7px;
+
+  background-color: #fff;
+  color: black;
+  mix-blend-mode: screen;
+
+  transition: 0.2s all;
+
+  cursor: pointer;
+}

@@ -1,0 +1,31 @@
+@use "/src/styles/variables.scss" as *;
+
+.MainPage {
+  width: 100vw;
+  height: 100vh;
+  background-color: $page-background;
+  color: white;
+  font-family: Danmark, sans-serif;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 50px;
+  text-align: center;
+}
+
+.mainMessage {
+  font-size: 36px;
+}
+
+.subMessage {
+  font-size: 32px;
+}
+
+.choiceButtons {
+  margin-top: 60px;
+  display: flex;
+  justify-content: center;
+  gap: 100px;
+}
