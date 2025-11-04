@@ -3,7 +3,7 @@ import { Outlet, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { useLocalStorage, useSessionStorage } from "../../helpers.ts";
 import { AnimatePresence } from "framer-motion";
-import { AppRoutes } from "../../constants/appRoutes.ts";
+import { AppRoutes } from "common/constants/appRoutes.ts";
 
 export function TitleMenu() {
   const [animationOn] = useLocalStorage<boolean>("animate", true);

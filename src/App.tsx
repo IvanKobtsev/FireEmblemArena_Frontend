@@ -1,11 +1,12 @@
 import { Route, Routes, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import { useLocalStorage } from "./helpers.ts";
-import { AppRoutes } from "./constants/appRoutes.ts";
+import { AppRoutes } from "./common/constants/appRoutes.ts";
 import { TitleMenu } from "./pages/titlePage/TitleMenu.tsx";
 import { FadingPageWrapper } from "./pages/PageWrappers.tsx";
 import { SoundSetting } from "./pages/titlePage/SoundSetting.tsx";
 import { MainPage } from "./pages/mainPage/MainPage.tsx";
+import { IntroPage } from "./pages/titlePage/IntroPage.tsx";
 
 export function App() {
   const [animationOn] = useLocalStorage<boolean>("animate", true);
@@ -35,7 +36,7 @@ export function App() {
                 path={AppRoutes.TitleMenu.Intro.route}
                 element={
                   <FadingPageWrapper>
-                    <div>Made by Lunatic Games</div>
+                    <IntroPage />
                   </FadingPageWrapper>
                 }
               />

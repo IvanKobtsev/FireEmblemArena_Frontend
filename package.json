@@ -18,7 +18,8 @@
     "react-dom": "^19.1.1",
     "react-query-swagger": "^15.12.8",
     "react-router-dom": "^7.9.4",
-    "react-router-url-params": "^0.9.2"
+    "react-router-url-params": "^0.9.2",
+    "vite-tsconfig-paths": "^5.1.4"
   },
   "devDependencies": {
     "@eslint/js": "^9.36.0",

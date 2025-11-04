@@ -1,7 +1,7 @@
 import styles from "./MainPage.module.scss";
 import { useLocalStorage } from "../../helpers.ts";
 import { useNavigate } from "react-router-dom";
-import { AppRoutes } from "../../constants/appRoutes.ts";
+import { AppRoutes } from "../../common/constants/appRoutes.ts";
 import { useEffect } from "react";
 
 export function MainPage() {

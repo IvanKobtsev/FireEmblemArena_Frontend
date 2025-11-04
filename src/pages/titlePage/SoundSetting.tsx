@@ -2,8 +2,10 @@ import { Button } from "../../components/Button/Button";
 import styles from "./TitlePage.module.scss";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { AppRoutes } from "../../constants/appRoutes.ts";
+import { AppRoutes } from "../../common/constants/appRoutes.ts";
 import { useSessionStorage } from "../../helpers.ts";
+import { playSound } from "../../components/Audio/audioHelpers.ts";
+import OptionAccepted from "assets/sounds/menu/OptionAccepted.wav";
 
 export function SoundSetting() {
   const [choice, setChoice] = useState<string | null>(null);
@@ -12,6 +14,7 @@ export function SoundSetting() {
 
   useEffect(() => {
     if (choice) {
+      if (choice === "Yes") playSound(OptionAccepted);
       setStarted(true);
       setTimeout(() => navigate(AppRoutes.TitleMenu.Intro.route), 1000);
     }
