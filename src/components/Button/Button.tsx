@@ -24,6 +24,7 @@ export function Button({ title, className, onClick, disabled }: ButtonProps) {
         disabled && styles.disabled,
       )}
     >
+      <div className={styles.shine} />
       <button
         className={clsx(styles.Button, className)}
         onClick={onButtonClick}

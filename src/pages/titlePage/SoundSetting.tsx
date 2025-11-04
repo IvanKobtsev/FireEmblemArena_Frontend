@@ -8,14 +8,14 @@ import { useSessionStorage } from "../../helpers.ts";
 export function SoundSetting() {
   const [choice, setChoice] = useState<string | null>(null);
   const navigate = useNavigate();
-  const [_, setStarted] = useSessionStorage<boolean>("started", false);
+  const [, setStarted] = useSessionStorage<boolean>("started", false);
 
   useEffect(() => {
     if (choice) {
       setStarted(true);
       setTimeout(() => navigate(AppRoutes.TitleMenu.Intro.route), 1000);
     }
-  }, [choice]);
+  }, [choice, navigate, setStarted]);
 
   return (
     <div className={styles.soundSetting}>
