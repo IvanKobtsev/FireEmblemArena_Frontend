@@ -1,5 +1,46 @@
 @use "/src/styles/variables.scss" as *;
 
+@at-root {
+  @property --bg-x-position {
+    syntax: "<length>";
+    initial-value: -4px;
+    inherits: false;
+  }
+
+  @property --bg-y-position {
+    syntax: "<length>";
+    initial-value: 4px;
+    inherits: false;
+  }
+}
+
+@keyframes smooth-x-wiggle {
+  0% {
+    --bg-x-position: -4px;
+  }
+  50% {
+    --bg-x-position: 4px;
+  }
+}
+
+@keyframes smooth-y-wiggle {
+  0% {
+    --bg-y-position: 4px;
+  }
+  50% {
+    --bg-y-position: -4px;
+  }
+}
+
+@keyframes glow {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0.3;
+  }
+}
+
 .MainPage {
   width: 100vw;
   height: 100vh;
@@ -32,4 +73,99 @@
   display: flex;
   justify-content: center;
   gap: 100px;
+}
+
+.titleFE {
+  font-family: KyivTypeSans, sans-serif;
+  font-weight: 1;
+  font-size: 96px;
+}
+
+.titleArena {
+  font-family: "Major Mono Display", monospace;
+  font-size: 165px;
+}
+
+.titleFE,
+.titleArena {
+  text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.8);
+}
+
+.titleWrapper {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #000;
+  transition: 1s all;
+
+  &.showMenu {
+    background-color: #fff;
+  }
+}
+
+.titleBackground {
+  position: fixed;
+  translate: calc(-50% + var(--bg-x-position)) calc(-50% + var(--bg-y-position));
+  left: 50%;
+  top: 50%;
+  background: url("/src/assets/img/title-bg.png") center center no-repeat;
+  background-size: cover;
+  width: calc(100% + 10px);
+  height: calc(100% + 10px);
+  opacity: 0;
+  transition: 1s all;
+  animation:
+    smooth-x-wiggle 5s ease-in-out infinite alternate,
+    smooth-y-wiggle 5s ease-in-out 1.25s infinite alternate;
+
+  &.appear {
+    opacity: 1;
+  }
+}
+
+.maskDefinitionSvg {
+  position: fixed;
+}
+
+.titleBlurEffect {
+  mask: url(#triangle-mask);
+  position: fixed;
+  width: 782px;
+  height: 608px;
+  background-color: #ffffff60;
+  left: 50%;
+  top: -100%;
+  transform: translateX(-50%);
+  backdrop-filter: blur(5px);
+  transition: 1s all;
+
+  &.centered {
+    top: 0;
+  }
+}
+
+.titleContainer {
+  position: fixed;
+  z-index: 1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  transition: 1s all;
+
+  &.centered {
+    top: 245px;
+  }
+}
+
+.clickAnywhereButton {
+  position: fixed;
+  width: 100vw;
+  height: 72px;
+  bottom: -100%;
+  background-color: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(5px);
+
+  &.active {
+  }
 }
